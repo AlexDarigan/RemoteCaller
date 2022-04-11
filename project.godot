@@ -8,14 +8,25 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "EditorProperty",
+"class": "CallableEditorProperty",
+"language": "GDScript",
+"path": "res://addons/remote_caller/callable_property.gd"
+} ]
 _global_script_class_icons={
+"CallableEditorProperty": ""
 }
 
 [application]
 
 config/name="RemoteCaller"
+run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/remote_caller/plugin.cfg" )
 
 [rendering]
 

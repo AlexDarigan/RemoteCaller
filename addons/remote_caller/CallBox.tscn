@@ -1,0 +1,27 @@
+[gd_scene format=2]
+
+[node name="CallBox" type="VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Callables" type="OptionButton" parent="."]
+margin_right = 200.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 200, 0 )
+
+[node name="CallButton" type="Button" parent="."]
+margin_top = 24.0
+margin_right = 200.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Call / Emit"
+
+[node name="AddParam" type="MenuButton" parent="."]
+margin_top = 48.0
+margin_right = 200.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Add Parameter"
+items = [ "Item 0", null, 0, false, false, 0, 0, null, "", false ]
