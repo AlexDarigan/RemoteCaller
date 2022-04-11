@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PoolIntArray.svg-aacd04562bf907690e157ee25aa7667e.stex"
+path="res://.import/function.png-6a61574b514f44be3a5ef6b6f8db111a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/remote_caller/parameters/PoolIntArray.svg"
-dest_files=[ "res://.import/PoolIntArray.svg-aacd04562bf907690e157ee25aa7667e.stex" ]
+source_file="res://addons/remote_caller/icons/function.png"
+dest_files=[ "res://.import/function.png-6a61574b514f44be3a5ef6b6f8db111a.stex" ]
 
 [params]
 

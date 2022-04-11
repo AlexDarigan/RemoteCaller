@@ -17,9 +17,16 @@ func _ready() -> void:
 func _on_network_peer_connected(_id: int) -> void:
 	_peer_id = _id
 	
-master func make_call(object_id: int, callable: String) -> void:
+master func make_call(object_id: int, call_type: String, callable: String) -> void:
 	var instance = instance_from_id(object_id)
-	instance.callv(callable, instance._REMOTE_CALL_PARAMS)
+	if call_type == "function":
+		instance.callv(callable, instance._REMOTE_CALL_PARAMS)
+	else:
+		var x = [callable]
+		x += instance._REMOTE_CALL_PARAMS
+		# Emit Signal can read empty arrays as arguments so we curry..
+		# ..it through callv with a merged array
+		instance.callv("emit_signal", x) 
 	
 var _processed_classes = []
 

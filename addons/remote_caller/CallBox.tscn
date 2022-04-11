@@ -1,28 +1,6 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://addons/remote_caller/parameters/bool.svg" type="Texture" id=1]
-[ext_resource path="res://addons/remote_caller/parameters/float.svg" type="Texture" id=2]
-[ext_resource path="res://addons/remote_caller/parameters/Vector2.svg" type="Texture" id=3]
-[ext_resource path="res://addons/remote_caller/parameters/PoolRealArray.svg" type="Texture" id=4]
-[ext_resource path="res://addons/remote_caller/parameters/Array.svg" type="Texture" id=5]
-[ext_resource path="res://addons/remote_caller/parameters/Vector3.svg" type="Texture" id=6]
-[ext_resource path="res://addons/remote_caller/parameters/Plane.svg" type="Texture" id=7]
-[ext_resource path="res://addons/remote_caller/parameters/Quaternion.svg" type="Texture" id=8]
-[ext_resource path="res://addons/remote_caller/parameters/Transform3D.svg" type="Texture" id=9]
-[ext_resource path="res://addons/remote_caller/parameters/Transform2D.svg" type="Texture" id=10]
-[ext_resource path="res://addons/remote_caller/parameters/String.svg" type="Texture" id=11]
-[ext_resource path="res://addons/remote_caller/parameters/AABB.svg" type="Texture" id=12]
-[ext_resource path="res://addons/remote_caller/parameters/NodePath.svg" type="Texture" id=13]
-[ext_resource path="res://addons/remote_caller/parameters/Rect2.svg" type="Texture" id=14]
-[ext_resource path="res://addons/remote_caller/parameters/PoolByteArray.svg" type="Texture" id=15]
-[ext_resource path="res://addons/remote_caller/parameters/Dictionary.svg" type="Texture" id=16]
-[ext_resource path="res://addons/remote_caller/parameters/PoolColorArray.svg" type="Texture" id=17]
-[ext_resource path="res://addons/remote_caller/parameters/PoolIntArray.svg" type="Texture" id=18]
-[ext_resource path="res://addons/remote_caller/parameters/Color.svg" type="Texture" id=19]
-[ext_resource path="res://addons/remote_caller/parameters/PoolVector2Array.svg" type="Texture" id=20]
-[ext_resource path="res://addons/remote_caller/parameters/PoolStringArray.svg" type="Texture" id=21]
-[ext_resource path="res://addons/remote_caller/parameters/PoolVector3Array.svg" type="Texture" id=22]
-[ext_resource path="res://addons/remote_caller/function.png" type="Texture" id=23]
+[ext_resource path="res://addons/remote_caller/icons/function.png" type="Texture" id=23]
 [ext_resource path="res://addons/remote_caller/CallBox.gd" type="Script" id=24]
 
 [node name="CallBox" type="VBoxContainer"]
@@ -44,11 +22,10 @@ size_flags_vertical = 3
 text = "Call / Emit"
 icon = ExtResource( 23 )
 
-[node name="AddParam" type="MenuButton" parent="."]
+[node name="AddParam" type="Button" parent="."]
 margin_top = 50.0
 margin_right = 200.0
 margin_bottom = 70.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Add Parameter"
-items = [ "bool", ExtResource( 1 ), 0, false, false, 0, 0, null, "", false, "int", ExtResource( 2 ), 0, false, false, 1, 0, null, "", false, "String", ExtResource( 11 ), 0, false, false, 2, 0, null, "", false, "Vector2", ExtResource( 3 ), 0, false, false, 3, 0, null, "", false, "Rect2", ExtResource( 14 ), 0, false, false, 4, 0, null, "", false, "Vector3", ExtResource( 6 ), 0, false, false, 5, 0, null, "", false, "Transform2D", ExtResource( 10 ), 0, false, false, 6, 0, null, "", false, "Plane", ExtResource( 7 ), 0, false, false, 7, 0, null, "", false, "Quaternion", ExtResource( 8 ), 0, false, false, 8, 0, null, "", false, "AABB", ExtResource( 12 ), 0, false, false, 9, 0, null, "", false, "Basis", null, 0, false, false, 10, 0, null, "", false, "Transform3D", ExtResource( 9 ), 0, false, false, 11, 0, null, "", false, "Color", ExtResource( 19 ), 0, false, false, 12, 0, null, "", false, "NodePath", ExtResource( 13 ), 0, false, false, 13, 0, null, "", false, "Dictionary", ExtResource( 16 ), 0, false, false, 14, 0, null, "", false, "Array", ExtResource( 5 ), 0, false, false, 15, 0, null, "", false, "PoolByteArray", ExtResource( 15 ), 0, false, false, 16, 0, null, "", false, "PoolColorArray", ExtResource( 17 ), 0, false, false, 17, 0, null, "", false, "PoolIntArray", ExtResource( 18 ), 0, false, false, 18, 0, null, "", false, "PoolRealArray", ExtResource( 4 ), 0, false, false, 19, 0, null, "", false, "PoolStringArray", ExtResource( 21 ), 0, false, false, 20, 0, null, "", false, "PoolVector2Array", ExtResource( 20 ), 0, false, false, 21, 0, null, "", false, "PoolVector3Array", ExtResource( 22 ), 0, false, false, 22, 0, null, "", false ]
+text = "Add Parameters"
