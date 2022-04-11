@@ -1,6 +1,5 @@
 extends Node
 
-
 func my_first_game_func() -> void:
 	print("calling my first game func from ", name)
 	
