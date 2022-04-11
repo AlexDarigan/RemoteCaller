@@ -1,8 +1,10 @@
 extends Node
 
+# warning-ignore:unused_signal
 signal my_parent_signal
 
 func _ready() -> void:
+# warning-ignore:return_value_discarded
 	connect("my_parent_signal", self, "_parent_callback")
 
 func my_first_game_func() -> void:

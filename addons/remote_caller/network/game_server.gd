@@ -42,12 +42,12 @@ func _on_node_added(node: Node) -> void:
 			script.source_code += "\nexport(Array) var _REMOTE_CALL_PARAMS = []"
 			script.reload(true)
 			node._REMOTE_CALL_PARAMS = []
-		
+
 func _exit_tree() -> void:
 	if custom_multiplayer.network_peer != null:
 		custom_multiplayer.network_peer.close_connection()
 		
-# if we hit a class that already exists, return an empty string, else return the class once we hit base
+
 func _seek_base_user_defined_type(node: Node) -> Script:
 	# Process all user defined types in the inheritance chain and adds them to a list of..
 	# ..processed nodes, we can then check this list on new nodes and see if it inherits the..
@@ -55,17 +55,13 @@ func _seek_base_user_defined_type(node: Node) -> Script:
 	var seeking: bool = true
 	var next = node.get_script()
 	var prev: Script
-	while seeking and next != null:
+	while next != null:
 		var klass = _get_class(next.source_code)
-		if ClassDB.class_exists(klass):
-			seeking = false	# We've hit Engine-defined types
-		elif _processed_classes.has(klass):
-			return null # We've already processed this chain before
-		else:
-			_processed_classes.append(klass) # Add our current class to processed classes
-			prev = next	# Store our last class
-			next = next.get_base_script()
-	# We hit an engine defined type, so we return one class before that for the base user-type
+		if _processed_classes.has(klass): # We've already processed this chain before
+			return null
+		_processed_classes.append(klass) # Add our current class to processed classes
+		prev = next	# Store our last class
+		next = next.get_base_script()
 	return prev
 			
 func _get_class(source: String) -> String:
