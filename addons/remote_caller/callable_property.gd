@@ -10,7 +10,7 @@ var _callables: OptionButton
 var _remote_object_id: int
 var _make_call: FuncRef
 
-func _init(remote_object_id: int, methods: Array) -> void:
+func _init(object, remote_object_id: int, methods: Array) -> void:
 	label = "Remote Caller"
 	_remote_object_id = remote_object_id
 	_callables = _callbox.get_node("Callables")
@@ -36,4 +36,3 @@ func _exit_tree() -> void:
 	remove_child(_callbox)
 	_callbox.queue_free()
 
-	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://addons/remote_caller/parameters/bool.svg" type="Texture" id=1]
 [ext_resource path="res://addons/remote_caller/parameters/float.svg" type="Texture" id=2]
@@ -23,10 +23,12 @@
 [ext_resource path="res://addons/remote_caller/parameters/PoolStringArray.svg" type="Texture" id=21]
 [ext_resource path="res://addons/remote_caller/parameters/PoolVector3Array.svg" type="Texture" id=22]
 [ext_resource path="res://addons/remote_caller/function.png" type="Texture" id=23]
+[ext_resource path="res://addons/remote_caller/CallBox.gd" type="Script" id=24]
 
 [node name="CallBox" type="VBoxContainer"]
 margin_right = 40.0
 margin_bottom = 40.0
+script = ExtResource( 24 )
 
 [node name="Callables" type="OptionButton" parent="."]
 margin_right = 200.0
