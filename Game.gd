@@ -2,6 +2,8 @@ extends Node
 
 # warning-ignore:unused_signal
 signal my_parent_signal
+var weapon = preload("res://Weapon.gd").new()
+var swordgun = preload("res://SwordGun.gd").new()
 
 func _ready() -> void:
 # warning-ignore:return_value_discarded

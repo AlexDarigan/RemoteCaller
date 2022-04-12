@@ -1,12 +1,6 @@
 extends "res://addons/remote_caller/network/remote_caller_network.gd"
 
 var _peer_id: int
-var _regex: RegEx
-
-func _enter_tree() -> void:
-	_regex = RegEx.new()
-	_regex.compile("^extends .*")
-	get_tree().connect("node_added", self, "_on_node_added")
 
 func _ready() -> void:
 	# Should only run in the Editor
@@ -28,45 +22,61 @@ master func make_call(object_id: int, call_type: String, callable: String) -> vo
 		# ..it through callv with a merged array
 		instance.callv("emit_signal", x)
 			
-var _processed_classes = []
+var _processed_script_paths = []
 
-
-func _on_node_added(node: Node) -> void:
-	if "RemoteCaller" in node.name:
-		# Avoiding editing ourselves during run time
-		return
-	if node.get_script():
-		_inject_param_array(node)
-	
-			
+master func _add_parameters(object_id: int) -> void:
+	# We handle this automatically via nodes but needed to use a button for anything else
+	var obj = instance_from_id(object_id)
+	if obj.get_script():
+		_inject_param_array(obj)
+		
 func _inject_param_array(object):
-	var klass = _get_class(object.get_script().source_code)
-	var script: GDScript = _seek_base_user_defined_type(object)
-	if script != null:
-		script.source_code += "\nvar _REMOTE_CALL_PARAMS: Array = []"
+	if "RemoteCaller" in object.name:
+		return
+	if _processed_script_paths.has(object.get_script().resource_path):
+		return
+	var scripts = _travel_inheritance_chain(object)
+	# At this point we could have scripts that have already inherited the thing
+	if _already_chained:
+		_already_chained = false
+		return
+		
+	# Set source code of uber-parent
+	var s = scripts.pop_front()
+	s.source_code += "\nvar _REMOTE_CALL_PARAMS: Array = []"
+	s.reload(true)
+	
+	for script in scripts:
 		script.reload(true)
-		object._REMOTE_CALL_PARAMS = []
+	object._REMOTE_CALL_PARAMS = []
+#	while scripts.empty():
+#	var s = null
+#	object.get_script().reload(true)
+#	if not scripts.empty() and object.get("_REMOTE_CALL_PARAMS") == null:
+#		s = scripts.pop_front()
+#		s.source_code += "\nvar _REMOTE_CALL_PARAMS: Array = []"
+#		s.reload(true)
+#	while not scripts.empty():
+#		s = scripts.pop_front()
+#		s.reload()
+#	if s != null:
+#		object._REMOTE_CALL_PARAMS = []
+var _already_chained = false
+func _travel_inheritance_chain(object) -> Array:
+	var scripts: Array = []
+	var next: GDScript = object.get_script()
+	var prev
+	while next != null:
+		if _processed_script_paths.has(next.resource_path):
+			_already_chained = true
+			return scripts
+		print("adding ", next.resource_path)
+		_processed_script_paths.append(next.resource_path)
+		scripts.append(next)
+		prev = next
+		next = next.get_base_script()
+	return scripts
 
 func _exit_tree() -> void:
 	if custom_multiplayer.network_peer != null:
 		custom_multiplayer.network_peer.close_connection()
-		
-
-func _seek_base_user_defined_type(object) -> Script:
-	# Process all user defined types in the inheritance chain and adds them to a list of..
-	# ..processed nodes, we can then check this list on new nodes and see if it inherits the..
-	# ..remote call parameters
-	var seeking: bool = true
-	var next = object.get_script()
-	var prev: Script
-	while next != null:
-		var klass = _get_class(next.source_code)
-		if _processed_classes.has(klass): # We've already processed this chain before
-			return null
-		_processed_classes.append(klass) # Add our current class to processed classes
-		prev = next	# Store our last class
-		next = next.get_base_script()
-	return prev
-			
-func _get_class(source: String) -> String:
-	return _regex.search(source).get_string().replace("extends ", "").replace('"', "")
