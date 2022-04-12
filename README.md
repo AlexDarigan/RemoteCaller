@@ -12,6 +12,7 @@ You can call any function* (with any number of parameters) and or emit a signal 
 
 # Quick Setup
 
+0. ( Refer to the gif at the top for visual instruction )
 1. Download the latest release
 2. Unzip it
 3. Add the unzipped folder to your project's addons folder
