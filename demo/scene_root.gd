@@ -5,6 +5,7 @@ var _called: int = 0
 signal _callback_scene_root_with_params
 
 func _ready() -> void:
+# warning-ignore:return_value_discarded
 	connect("_callback_scene_root_with_params", self, "_on_callback_scene_root_with_params")
 
 func call_scene_root() -> void:
