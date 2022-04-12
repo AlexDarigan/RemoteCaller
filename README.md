@@ -3,7 +3,7 @@
 Remote Caller is an EditorInspectorPlugin for Godot Game Engine that allows users to call functions and
 emit signals with various parameters in game from their a few clicks on the Inspector
 
-![Video of Remote Caller Plugin]("/remotecaller.gif")
+![Video of Remote Caller Plugin](remotecaller.gif)
 # Features
 
 You can call any function* (with any number of parameters) and or emit a signal (with any number of parameters) on any object that you can inspect
