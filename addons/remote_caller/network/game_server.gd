@@ -37,31 +37,17 @@ func _inject_param_array(object):
 		return
 	var scripts = _travel_inheritance_chain(object)
 	# At this point we could have scripts that have already inherited the thing
-	if _already_chained:
-		_already_chained = false
-		return
-		
+	if not _already_chained:
 	# Set source code of uber-parent
-	var s = scripts.pop_front()
-	s.source_code += "\nvar _REMOTE_CALL_PARAMS: Array = []"
-	s.reload(true)
+		var s = scripts.pop_back()
+		s.source_code += "\nexport(Array) var _REMOTE_CALL_PARAMS: Array = []"
+		s.reload(true)
 	
 	for script in scripts:
 		script.reload(true)
-	object._REMOTE_CALL_PARAMS = []
-#	while scripts.empty():
-#	var s = null
-#	object.get_script().reload(true)
-#	if not scripts.empty() and object.get("_REMOTE_CALL_PARAMS") == null:
-#		s = scripts.pop_front()
-#		s.source_code += "\nvar _REMOTE_CALL_PARAMS: Array = []"
-#		s.reload(true)
-#	while not scripts.empty():
-#		s = scripts.pop_front()
-#		s.reload()
-#	if s != null:
-#		object._REMOTE_CALL_PARAMS = []
-var _already_chained = false
+	_already_chained = false
+
+var _already_chained = false # Have we been here before
 func _travel_inheritance_chain(object) -> Array:
 	var scripts: Array = []
 	var next: GDScript = object.get_script()
@@ -70,7 +56,6 @@ func _travel_inheritance_chain(object) -> Array:
 		if _processed_script_paths.has(next.resource_path):
 			_already_chained = true
 			return scripts
-		print("adding ", next.resource_path)
 		_processed_script_paths.append(next.resource_path)
 		scripts.append(next)
 		prev = next

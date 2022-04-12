@@ -17,7 +17,6 @@ func _init(object: Object) -> void:
 	_remote_object_id = object.get_remote_object_id()
 	_callables = _callbox.get_node("Callables")
 	_callbox.get_node("CallButton").connect("pressed", self, "_on_call_button_pressed")
-	_callbox.get_node("AddParam").connect("pressed", self, "_on_add_params_pressed")
 	
 	for method in object.get_script().get_script_method_list():
 		if not _ENGINE_CALLBACKS.has(method.name):
