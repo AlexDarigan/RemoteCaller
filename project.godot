@@ -13,16 +13,49 @@ _global_script_classes=[ {
 "class": "CallableEditorProperty",
 "language": "GDScript",
 "path": "res://addons/remote_caller/callable_property.gd"
+}, {
+"base": "ParentNode",
+"class": "ChildNode",
+"language": "GDScript",
+"path": "res://demo/node_child.gd"
+}, {
+"base": "ParentObject",
+"class": "ChildObject",
+"language": "GDScript",
+"path": "res://demo/object_child.gd"
+}, {
+"base": "Sprite",
+"class": "ParentNode",
+"language": "GDScript",
+"path": "res://demo/node_parent.gd"
+}, {
+"base": "Object",
+"class": "ParentObject",
+"language": "GDScript",
+"path": "res://demo/object_parent.gd"
 } ]
 _global_script_class_icons={
-"CallableEditorProperty": ""
+"CallableEditorProperty": "",
+"ChildNode": "",
+"ChildObject": "",
+"ParentNode": "",
+"ParentObject": ""
 }
 
 [application]
 
 config/name="RemoteCaller"
-run/main_scene="res://Game.tscn"
+run/main_scene="res://demo/SceneRoot.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+RemoteCallerServer="*res://addons/remote_caller/network/game_server.gd"
+RemoteCallerClient="*res://addons/remote_caller/network/editor_client.gd"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/remote_caller/plugin.cfg" )
 
 [rendering]
 

@@ -18,12 +18,17 @@ func _init(object: Object) -> void:
 	_callables = _callbox.get_node("Callables")
 	_callbox.get_node("CallButton").connect("pressed", self, "_on_call_button_pressed")
 	
+	var methods = []
 	for method in object.get_script().get_script_method_list():
-		if not _ENGINE_CALLBACKS.has(method.name):
+		if not _ENGINE_CALLBACKS.has(method.name) and not methods.has(method.name):
+			methods.append(method.name)
 			_callbox.get_node("Callables").add_icon_item(_FUNCTION_ICON, method.name)
 			
+	var events = []
 	for event in object.get_script().get_script_signal_list():
-		_callbox.get_node("Callables").add_icon_item(_SIGNAL_ICON, event.name)
+		if not events.has(event.name):
+			events.append(event.name)
+			_callbox.get_node("Callables").add_icon_item(_SIGNAL_ICON, event.name)
 	
 	add_child(_callbox)
 	set_bottom_editor(_callbox)
