@@ -42,6 +42,7 @@ func _get_call_type():
 	return "function" if _callables.get_item_icon(_callables.get_selected_id()) == _FUNCTION_ICON else "signal"
 	
 func _exit_tree() -> void:
+	get_tree().root.get_node("RemoteCallerClient").call("_leave_server")
 	remove_child(_callbox)
 	_callbox.queue_free()
 

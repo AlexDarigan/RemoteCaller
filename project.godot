@@ -24,15 +24,6 @@ config/name="RemoteCaller"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-RemoteCallerServer="*res://addons/remote_caller/network/game_server.gd"
-RemoteCallerClient="*res://addons/remote_caller/network/editor_client.gd"
-
-[editor_plugins]
-
-enabled=PoolStringArray( "res://addons/remote_caller/plugin.cfg" )
-
 [rendering]
 
 environment/default_environment="res://default_env.tres"

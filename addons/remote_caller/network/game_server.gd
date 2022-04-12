@@ -63,5 +63,6 @@ func _travel_inheritance_chain(object) -> Array:
 	return scripts
 
 func _exit_tree() -> void:
+	rpc_id(_peer_id, "_get_kicked")
 	if custom_multiplayer.network_peer != null:
-		custom_multiplayer.network_peer.close_connection()
+		custom_multiplayer.network_peer.close_connection(200)

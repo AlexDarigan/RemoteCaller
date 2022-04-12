@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://addons/remote_caller/icons/function.png" type="Texture" id=23]
+
+[sub_resource type="Theme" id=1]
 
 [node name="CallBox" type="VBoxContainer"]
 margin_right = 40.0
@@ -17,5 +19,7 @@ margin_right = 200.0
 margin_bottom = 46.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Call / Emit"
+theme = SubResource( 1 )
+text = "Call"
 icon = ExtResource( 23 )
+flat = true
